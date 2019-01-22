@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Redis安装当前redis最新稳定版本是4.0，常用版本3.2版本。 step1:下载wget http://download.redis.io/releases/redis-3.2.8.tar.gz step2:解压tar -zxvf redis-3.2.8.tar.gz step3:复制，放到usr/local/redis目录下sudo mv ./redis-3.2.8 /usr/loca">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis">
+<meta property="og:url" content="http://yoursite.com/2019/01/22/redis/index.html">
+<meta property="og:site_name" content="Alright">
+<meta property="og:description" content="Redis安装当前redis最新稳定版本是4.0，常用版本3.2版本。 step1:下载wget http://download.redis.io/releases/redis-3.2.8.tar.gz step2:解压tar -zxvf redis-3.2.8.tar.gz step3:复制，放到usr/local/redis目录下sudo mv ./redis-3.2.8 /usr/loca">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/redis/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/redis/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/redis/3.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/redis/4.png">
+<meta property="og:updated_time" content="2019-01-22T13:54:59.795Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="redis">
+<meta name="twitter:description" content="Redis安装当前redis最新稳定版本是4.0，常用版本3.2版本。 step1:下载wget http://download.redis.io/releases/redis-3.2.8.tar.gz step2:解压tar -zxvf redis-3.2.8.tar.gz step3:复制，放到usr/local/redis目录下sudo mv ./redis-3.2.8 /usr/loca">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/22/redis/1.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/22/redis/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>redis | Alright</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Alright</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/22/redis/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈昭颖">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alright">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">redis
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-01-22 20:58:43 / Modified: 21:54:59" itemprop="dateCreated datePublished" datetime="2019-01-22T20:58:43+08:00">2019-01-22</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Redis安装"><a href="#Redis安装" class="headerlink" title="Redis安装"></a>Redis安装</h2><p>当前redis最新稳定版本是4.0，常用版本3.2版本。</p>
+<h3 id="step1-下载"><a href="#step1-下载" class="headerlink" title="step1:下载"></a>step1:下载</h3><p><code>wget http://download.redis.io/releases/redis-3.2.8.tar.gz</code></p>
+<h3 id="step2-解压"><a href="#step2-解压" class="headerlink" title="step2:解压"></a>step2:解压</h3><p><code>tar -zxvf redis-3.2.8.tar.gz</code></p>
+<h3 id="step3-复制，放到usr-local-redis目录下"><a href="#step3-复制，放到usr-local-redis目录下" class="headerlink" title="step3:复制，放到usr/local/redis目录下"></a>step3:复制，放到usr/local/redis目录下</h3><p><code>sudo mv ./redis-3.2.8 /usr/local/redis/</code></p>
+<h3 id="step4-进入redis目录"><a href="#step4-进入redis目录" class="headerlink" title="step4:进入redis目录"></a>step4:进入redis目录</h3><p><code>cd /usr/local/redis</code></p>
+<h3 id="step5-生成"><a href="#step5-生成" class="headerlink" title="step5:生成"></a>step5:生成</h3><ol>
+<li>安装c语言编译器gcc<br>sudo apt-get install gcc</li>
+<li>安装编译命令make<br>sudo apt-get install make(这一步可能会出问题，根据提示执行命令)</li>
+<li>生成<br>sudo make(比较慢)<br>我们现在做的是源码安装 ，如果用apt-get用依赖包管理 下载的话 就不能去做一下文件配置，配不了集群<br>redis 的gcc 是为了编译我们下载下来的redis源码<br>redis源码因为是c写的嘛<br>然后可以观察到，/usr/local/redis$ sudo vim Makefile<br>它这个文本里面就 写的一些关于ubutu在linux的 一系列安装命令，它帮你报装好在一起，然后你用make 去<br>执行<h3 id="step6-测试-这段运行时间会比较慢"><a href="#step6-测试-这段运行时间会比较慢" class="headerlink" title="step6:测试,这段运行时间会比较慢"></a>step6:测试,这段运行时间会比较慢</h3><code>sudo make test</code><br><img src="/2019/01/22/redis/1.png" alt="maketest"></li>
+</ol>
+<p><strong>tcl8.6.1-src.tar 相当于类库 ，redis要用到的库</strong></p>
+<p><strong>解决方法</strong></p>
+<ol>
+<li>wget <a href="http://downloads.sourceforge.net/tcl/tcl8.6.1-src.tar.gz" target="_blank" rel="noopener">http://downloads.sourceforge.net/tcl/tcl8.6.1-src.tar.gz</a></li>
+<li>sudo tar xzvf tcl8.6.1-src.tar.gz  -C /usr/local/</li>
+<li>cd  /usr/local/tcl8.6.1/unix/</li>
+<li>sudo ./configure</li>
+<li>sudo make（时间比较长）</li>
+<li>sudo make install<br>注意：上面是在<strong>/usr/local/tcl8.6.1/unix/</strong>里进行make install</li>
+</ol>
+<h3 id="step7-安装-将redis的命令安装到-usr-local-bin-目录"><a href="#step7-安装-将redis的命令安装到-usr-local-bin-目录" class="headerlink" title="step7:安装,将redis的命令安装到/usr/local/bin/目录"></a>step7:安装,将redis的命令安装到/usr/local/bin/目录</h3><p><strong>在/usr/local/redis 执行sudo make install</strong><br>sudo make install  （时间比较长）</p>
+<h3 id="step8-安装完成后，我们进入目录-usr-local-bin中查看"><a href="#step8-安装完成后，我们进入目录-usr-local-bin中查看" class="headerlink" title="step8:安装完成后，我们进入目录/usr/local/bin中查看"></a>step8:安装完成后，我们进入目录/usr/local/bin中查看</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/bin</span><br><span class="line">ls -all</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/01/22/redis/2.png" alt="maketest"></p>
+<ul>
+<li>redis-server      redis服务器</li>
+<li>redis-cli          redis命令行客户端</li>
+<li>redis-benchmark  redis性能测试工具</li>
+<li>redis-check-aof    AOF文件修复工具</li>
+<li>redis-check-rdb    RDB文件检索工具</li>
+</ul>
+<h3 id="step9-配置文件，移动到-etc-目录下"><a href="#step9-配置文件，移动到-etc-目录下" class="headerlink" title="step9:配置文件，移动到/etc/目录下"></a>step9:配置文件，移动到/etc/目录下</h3><p>配置文件目录为/usr/local/redis/redis.conf<br><code>sudo cp /usr/local/redis/redis.conf /etc/redis/</code></p>
+<p>##配置</p>
+<h3 id="Redis的配置信息在-etc-redis-redis-conf下。"><a href="#Redis的配置信息在-etc-redis-redis-conf下。" class="headerlink" title="Redis的配置信息在/etc/redis/redis.conf下。"></a>Redis的配置信息在/etc/redis/redis.conf下。</h3><h3 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h3><p><code>sudo vi /etc/redis/redis.conf</code></p>
+<h3 id="核心配置选项"><a href="#核心配置选项" class="headerlink" title="核心配置选项"></a>核心配置选项</h3><h3 id="绑定ip：如果需要远程访问，可将此行注释，或绑定一个真实ip"><a href="#绑定ip：如果需要远程访问，可将此行注释，或绑定一个真实ip" class="headerlink" title="绑定ip：如果需要远程访问，可将此行注释，或绑定一个真实ip"></a>绑定ip：如果需要远程访问，可将此行注释，或绑定一个真实ip</h3><p>bind 127.0.0.1</p>
+<h3 id="端口，默认为6379"><a href="#端口，默认为6379" class="headerlink" title="端口，默认为6379"></a>端口，默认为6379</h3><h3 id="是否以守护进程运⾏"><a href="#是否以守护进程运⾏" class="headerlink" title="是否以守护进程运⾏"></a>是否以守护进程运⾏</h3><p>a)如果以守护进程运⾏，则不会在命令⾏阻塞，类似于服务<br>b)如果以⾮守护进程运⾏，则当前终端被阻塞<br>c)设置为yes表示守护进程，设置为no表示⾮守护进程<br>d)推荐设置为yes<br><strong>daemonize yse  使它变为后台进程，前台进程的话 会卡死在黑窗口，例如启动GoLand</strong><br>–另外，不小心按了ctrl+Z 怎么办  –&gt;直接按 fg<br>daemonize yes</p>
+<h3 id="数据文件"><a href="#数据文件" class="headerlink" title="数据文件"></a>数据文件</h3><p>dbfilename dump.rdb</p>
+<h3 id="数据文件存储路径"><a href="#数据文件存储路径" class="headerlink" title="数据文件存储路径"></a>数据文件存储路径</h3><p>dir /var/lib/redis</p>
+<h3 id="日志文件"><a href="#日志文件" class="headerlink" title="日志文件"></a>日志文件</h3><p>logfile /var/log/redis/redis-server.log</p>
+<h3 id="数据库，默认有16个"><a href="#数据库，默认有16个" class="headerlink" title="数据库，默认有16个"></a>数据库，默认有16个</h3><p>database 16</p>
+<h3 id="主从复制，类似于双机备份"><a href="#主从复制，类似于双机备份" class="headerlink" title="主从复制，类似于双机备份"></a>主从复制，类似于双机备份</h3><p>slaveof</p>
+<p>##服务器端和客户端命令</p>
+<h3 id="服务器端的命令为redis-server"><a href="#服务器端的命令为redis-server" class="headerlink" title="服务器端的命令为redis-server"></a>服务器端的命令为redis-server</h3><h3 id="可以使用help查看帮助文档"><a href="#可以使用help查看帮助文档" class="headerlink" title="可以使用help查看帮助文档"></a>可以使用help查看帮助文档</h3><p>redis-server –help</p>
+<h3 id="个人习惯"><a href="#个人习惯" class="headerlink" title="个人习惯"></a>个人习惯</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ps -aux|grep redis 查看redis服务器进程</span><br><span class="line">sudo kill -9 pid 杀死redis服务器</span><br><span class="line">sudo redis-server /etc/redis/redis.conf 指定加载的配置文件</span><br></pre></td></tr></table></figure>
+<p>注意，在安装编译好redis时，系统会默认以服务的形式去启动redis-server, redis服务的启动方式有2种，一种是直接服务的方式管理redis服务<br><strong>假如redis以服务时的形式启动的话，那么用kill -9 XX不能够杀死的，终止那个进程后，它又会以另一个端口启动</strong></p>
+<h3 id="不推荐使用服务的方式管理redis服务"><a href="#不推荐使用服务的方式管理redis服务" class="headerlink" title="不推荐使用服务的方式管理redis服务"></a>不推荐使用服务的方式管理redis服务</h3><p>启动 <strong>sudo service redis start</strong><br>停止 <strong>sudo service redis stop</strong><br>重启 <strong>sudo service redis restart</strong></p>
+<h3 id="重点重点，不用服务方式开启redis，那么如何改用手动的方式去启动呢"><a href="#重点重点，不用服务方式开启redis，那么如何改用手动的方式去启动呢" class="headerlink" title="重点重点，不用服务方式开启redis，那么如何改用手动的方式去启动呢"></a>重点重点，不用服务方式开启redis，那么如何改用手动的方式去启动呢</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sudo service redis stop //停止</span><br><span class="line">ps aux ! grep redis </span><br><span class="line">su</span><br><span class="line">cd /var/lib/redis</span><br><span class="line">ls</span><br><span class="line">会看到dump.rdb ,因为这个 文件会阻止我们去kill服务形式的redis-server进程，所以要把它删掉</span><br><span class="line">rm dump.rdb</span><br><span class="line">exit</span><br><span class="line">sudo redis-server /etc/redis/redis.conf   以手动形式 配置方式 启动redis-server,这样手工的形式，我们是可以手动kill -9 进程号 的</span><br></pre></td></tr></table></figure>
+<h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><h3 id="客户端的命令为redis-cli"><a href="#客户端的命令为redis-cli" class="headerlink" title="客户端的命令为redis-cli"></a>客户端的命令为redis-cli</h3><h3 id="连接redis"><a href="#连接redis" class="headerlink" title="连接redis"></a>连接redis</h3><p>控制台窗口 输入 redis-cli 就能进入redis了<br>另外补充,如果想之后显示中文字符的话用, redis-cli –raw</p>
+<h3 id="运行测试命令"><a href="#运行测试命令" class="headerlink" title="运行测试命令"></a>运行测试命令</h3><p><img src="/2019/01/22/redis/3.png" alt="maketest"><br>切换数据库<br>数据库没有名称，默认有16个，通过0-15来标识，连接redis默认选择第一个数据库<br><strong>select n</strong><br><img src="/2019/01/22/redis/4.png" alt="maketest"></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/16/BeegoDay1/" rel="next" title="'BeegoDay1'">
+                <i class="fa fa-chevron-left"></i> 'BeegoDay1'
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">陈昭颖</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis安装"><span class="nav-number">1.</span> <span class="nav-text">Redis安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#step1-下载"><span class="nav-number">1.1.</span> <span class="nav-text">step1:下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#step2-解压"><span class="nav-number">1.2.</span> <span class="nav-text">step2:解压</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#step3-复制，放到usr-local-redis目录下"><span class="nav-number">1.3.</span> <span class="nav-text">step3:复制，放到usr/local/redis目录下</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#step4-进入redis目录"><span class="nav-number">1.4.</span> <span class="nav-text">step4:进入redis目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#step5-生成"><span class="nav-number">1.5.</span> <span class="nav-text">step5:生成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#step6-测试-这段运行时间会比较慢"><span class="nav-number">1.6.</span> <span class="nav-text">step6:测试,这段运行时间会比较慢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#step7-安装-将redis的命令安装到-usr-local-bin-目录"><span class="nav-number">1.7.</span> <span class="nav-text">step7:安装,将redis的命令安装到/usr/local/bin/目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#step8-安装完成后，我们进入目录-usr-local-bin中查看"><span class="nav-number">1.8.</span> <span class="nav-text">step8:安装完成后，我们进入目录/usr/local/bin中查看</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#step9-配置文件，移动到-etc-目录下"><span class="nav-number">1.9.</span> <span class="nav-text">step9:配置文件，移动到/etc/目录下</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis的配置信息在-etc-redis-redis-conf下。"><span class="nav-number">1.10.</span> <span class="nav-text">Redis的配置信息在/etc/redis/redis.conf下。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看"><span class="nav-number">1.11.</span> <span class="nav-text">查看</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#核心配置选项"><span class="nav-number">1.12.</span> <span class="nav-text">核心配置选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绑定ip：如果需要远程访问，可将此行注释，或绑定一个真实ip"><span class="nav-number">1.13.</span> <span class="nav-text">绑定ip：如果需要远程访问，可将此行注释，或绑定一个真实ip</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#端口，默认为6379"><span class="nav-number">1.14.</span> <span class="nav-text">端口，默认为6379</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#是否以守护进程运⾏"><span class="nav-number">1.15.</span> <span class="nav-text">是否以守护进程运⾏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据文件"><span class="nav-number">1.16.</span> <span class="nav-text">数据文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据文件存储路径"><span class="nav-number">1.17.</span> <span class="nav-text">数据文件存储路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日志文件"><span class="nav-number">1.18.</span> <span class="nav-text">日志文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库，默认有16个"><span class="nav-number">1.19.</span> <span class="nav-text">数据库，默认有16个</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主从复制，类似于双机备份"><span class="nav-number">1.20.</span> <span class="nav-text">主从复制，类似于双机备份</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器端的命令为redis-server"><span class="nav-number">1.21.</span> <span class="nav-text">服务器端的命令为redis-server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可以使用help查看帮助文档"><span class="nav-number">1.22.</span> <span class="nav-text">可以使用help查看帮助文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#个人习惯"><span class="nav-number">1.23.</span> <span class="nav-text">个人习惯</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不推荐使用服务的方式管理redis服务"><span class="nav-number">1.24.</span> <span class="nav-text">不推荐使用服务的方式管理redis服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重点重点，不用服务方式开启redis，那么如何改用手动的方式去启动呢"><span class="nav-number">1.25.</span> <span class="nav-text">重点重点，不用服务方式开启redis，那么如何改用手动的方式去启动呢</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端"><span class="nav-number">2.</span> <span class="nav-text">客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端的命令为redis-cli"><span class="nav-number">2.1.</span> <span class="nav-text">客户端的命令为redis-cli</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连接redis"><span class="nav-number">2.2.</span> <span class="nav-text">连接redis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行测试命令"><span class="nav-number">2.3.</span> <span class="nav-text">运行测试命令</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈昭颖</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
